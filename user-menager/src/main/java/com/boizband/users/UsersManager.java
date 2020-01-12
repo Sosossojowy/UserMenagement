@@ -16,6 +16,21 @@ public class UsersManager {
 
     public void delete(int userId) {
         //TODO to be implemented
+        for (int idx = 0; idx < this.users.length; idx++) {
+            if (this.users[idx].getId() == userId) {
+                this.users[idx] = null;
+                break;
+            }
+        }
+        User[] newUsers = new User[this.users.length-1];
+        byte x = 0;
+        for (int idx = 0; idx < newUsers.length; idx++) {
+            if (this.users[idx] == null) {
+                x = 1;
+            }
+            newUsers[idx]=this.users[idx + x];
+        }
+        this.users = newUsers;
     }
 
     public void update(User userForUpdate) {
@@ -33,9 +48,10 @@ public class UsersManager {
         //TODO to be implemented
         return null;
     }
-    private void extendUsers(){
+
+    private void extendUsers() {
         User[] newUsers = new User[this.users.length + 1];
-        for(int idx = 0; idx < this.users.length; idx++){
+        for (int idx = 0; idx < this.users.length; idx++) {
             newUsers[idx] = this.users[idx];
         }
         this.users = newUsers;
