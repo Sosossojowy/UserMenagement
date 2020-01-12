@@ -1,5 +1,7 @@
 package com.boizband.users;
 
+import java.util.Scanner;
+
 public class UsersManager {
     private User[] users;
 
@@ -8,7 +10,8 @@ public class UsersManager {
     }
 
     public void add(User user) {
-        //TODO to be implemented
+        extendUsers();
+        this.users[this.users.length -1] = user;
     }
 
     public void delete(int userId) {
@@ -22,5 +25,13 @@ public class UsersManager {
     public User[] search(String pattern) {
         //TODO to be implemented
         return null;
+    }
+
+    private void extendUsers() {
+        User[] newUsers = new User[this.users.length + 1];
+        for (int idx = 0; idx < this.users.length; idx++) {
+            newUsers[idx] = this.users[idx];
+        }
+        this.users = newUsers;
     }
 }
