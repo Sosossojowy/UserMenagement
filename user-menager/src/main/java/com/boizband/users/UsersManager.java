@@ -12,7 +12,7 @@ public class UsersManager {
 
     public void add(User user) {
         extendUsers();
-        this.users[this.users.length -1] = user;
+        this.users[this.users.length - 1] = user;
     }
 
     public void delete(int userId) {
@@ -28,9 +28,9 @@ public class UsersManager {
     }
 
     public void update(User userForUpdate) {
-        for (int idx = 0; idx < this.users.length; idx++) {
-            if (userForUpdate.getId() == this.users[idx].getId()) {
-                User user = this.users[idx];
+        for (int idx = 0; idx < this.users.size(); idx++) {
+            if (userForUpdate.getId() == this.users.get(idx).getId()) {
+                User user = this.users.get(idx);
                 user.setFirstName(userForUpdate.getFirstName());
                 user.setLastName(userForUpdate.getLastName());
                 user.setAge(userForUpdate.getAge());
