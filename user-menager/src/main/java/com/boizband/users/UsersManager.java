@@ -46,7 +46,7 @@ public class UsersManager {
     }
     public User[] search(String pattern) {
         //TODO to be implemented
-        return null;
+        return this.users;
     }
 
     private void extendUsers() {
