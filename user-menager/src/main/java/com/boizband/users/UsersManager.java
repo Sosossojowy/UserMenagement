@@ -6,6 +6,7 @@ import java.util.List;
 
 public class UsersManager {
     private List<User> users;
+
     public UsersManager() {
         this.users = new ArrayList<User>();
     }
@@ -19,7 +20,7 @@ public class UsersManager {
         User userForDelete = null;
         for (int idx = 0; idx < this.users.size(); idx++) {
             if (this.users.get(idx).getId() == userId) {
-                userForDelete= this.users.get(idx);
+                userForDelete = this.users.get(idx);
                 break;
             }
         }
@@ -37,8 +38,34 @@ public class UsersManager {
             }
         }
     }
-    public List<User> search(String pattern) {
-        //TODO to be implemented
-        return this.users;
+
+    public List<User> search(final String pattern) {
+        if (pattern == null || pattern.isEmpty()) {
+            return this.users;
+        }
+        final List<User> searchResult = new ArrayList<User>();
+        for (final User user : this.users) {
+            if (user.getFirstName().contains(pattern)) {
+                searchResult.add(user);
+            } else if (user.getLastName().contains(pattern)) {
+                searchResult.add(user);
+            } else if (user.getPhoneNumber().contains(pattern)) {
+                searchResult.add(user);
+            } else if (isNumber(pattern)&& user.getAge()== Integer.parseInt(pattern)){
+                searchResult.add(user);
+            }
+
+        }
+        return searchResult;
+    }
+
+    private boolean isNumber(String pattern) {
+        try {
+            Integer.parseInt(pattern);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
     }
 }
