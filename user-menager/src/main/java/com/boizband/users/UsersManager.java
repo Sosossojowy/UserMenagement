@@ -11,8 +11,7 @@ public class UsersManager {
     }
 
     public void add(User user) {
-        extendUsers();
-        this.users[this.users.length - 1] = user;
+        this.users.add(user);
     }
 
     public void delete(int userId) {
@@ -41,13 +40,5 @@ public class UsersManager {
     public List<User> search(String pattern) {
         //TODO to be implemented
         return this.users;
-    }
-
-    private void extendUsers() {
-        User[] newUsers = new User[this.users.length + 1];
-        for (int idx = 0; idx < this.users.length; idx++) {
-            newUsers[idx] = this.users[idx];
-        }
-        this.users = newUsers;
     }
 }
