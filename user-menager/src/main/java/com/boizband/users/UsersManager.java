@@ -1,12 +1,13 @@
 package com.boizband.users;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class UsersManager {
-    private User[] users;
-
+    private List<User> users;
     public UsersManager() {
-        this.users = new User[0];
+        this.users = new ArrayList<User>();
     }
 
     public void add(User user) {
@@ -16,21 +17,14 @@ public class UsersManager {
 
     public void delete(int userId) {
         //TODO to be implemented
-        for (int idx = 0; idx < this.users.length; idx++) {
-            if (this.users[idx].getId() == userId) {
-                this.users[idx] = null;
+        User userForDelete = null;
+        for (int idx = 0; idx < this.users.size(); idx++) {
+            if (this.users.get(idx).getId() == userId) {
+                userForDelete= this.users.get(idx);
                 break;
             }
         }
-        User[] newUsers = new User[this.users.length-1];
-        byte x = 0;
-        for (int idx = 0; idx < newUsers.length; idx++) {
-            if (this.users[idx] == null) {
-                x = 1;
-            }
-            newUsers[idx]=this.users[idx + x];
-        }
-        this.users = newUsers;
+        this.users.remove(userForDelete);
     }
 
     public void update(User userForUpdate) {
@@ -44,7 +38,7 @@ public class UsersManager {
             }
         }
     }
-    public User[] search(String pattern) {
+    public List<User> search(String pattern) {
         //TODO to be implemented
         return this.users;
     }
