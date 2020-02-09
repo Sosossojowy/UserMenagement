@@ -61,6 +61,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "\n" + "ID: " + this.id + ", Imię: " + firstName + ", Nazwisko: " + lastName + ", wiek: " + age + ", numer telefonu: " + phoneNumber;
+        return this.id + ";" + firstName + ";" + lastName + ";" + age + ";" + phoneNumber;
     }
 }

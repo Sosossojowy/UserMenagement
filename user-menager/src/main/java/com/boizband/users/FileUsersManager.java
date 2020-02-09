@@ -1,5 +1,7 @@
 package com.boizband.users;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,15 @@ public class FileUsersManager implements UsersManager{
     }
 
     private void saveFile(){
-        //TODO Zapisac userow do pliku.
+        try (FileWriter file = new FileWriter(this.getClass().getResource("/users.txt").getPath());
+             BufferedWriter writer = new BufferedWriter(file)) {
+            for (final User user : this.users) {
+                writer.write(user.toString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
