@@ -61,6 +61,6 @@ public class User {
 
     @Override
     public String toString() {
-        return this.id + ";" + firstName + ";" + lastName + ";" + age + ";" + phoneNumber;
+        return this.id + ";" + age + ";" + firstName + ";" + lastName + ";" + phoneNumber;
     }
 }

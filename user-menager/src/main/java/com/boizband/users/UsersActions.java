@@ -1,10 +1,5 @@
 package com.boizband.users;
 
-//import com.boizband.UserApplications;
-//import sun.awt.image.PixelConverter;
-
-//import java.util.Arrays;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +9,7 @@ public class UsersActions {
     private Scanner scanner;
 
     public UsersActions() {
-        this.usersManager = new ListUsersManager();
+        this.usersManager = new FileUsersManager();
         this.scanner = new Scanner(System.in);
 
     }
