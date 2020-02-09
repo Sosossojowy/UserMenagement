@@ -99,9 +99,9 @@ public class UsersManagerTest {
         User userFromResult = result.get(0);
         Assertions.assertThat(userFromResult.getLastName()).isEqualTo("Strasburger");
     }
+
     @Test
     public void shouldSearchByPartOfLastName() {
-        //given
         usersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
         usersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(usersManager.search("").size()).isEqualTo(2);
@@ -128,6 +128,7 @@ public class UsersManagerTest {
         User userFromResult = result.get(0);
         Assertions.assertThat(userFromResult.getPhoneNumber()).isEqualTo("799887665");
     }
+
     @Test
     public void shouldSearchByPartOfPhoneNumber() {
         //given
@@ -142,6 +143,7 @@ public class UsersManagerTest {
         User userFromResult = result.get(0);
         Assertions.assertThat(userFromResult.getPhoneNumber()).isEqualTo("799887665");
     }
+
     @Test
     public void shouldSearchByAge() {
         //given

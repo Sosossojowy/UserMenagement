@@ -15,6 +15,10 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public User() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -53,5 +57,10 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "\n" + "ID: " + this.id + ", Imię: " + firstName + ", Nazwisko: " + lastName + ", wiek: " + age + ", numer telefonu: " + phoneNumber;
     }
 }
