@@ -5,6 +5,7 @@ package com.boizband.users;
 
 //import java.util.Arrays;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class UsersActions {
     private Scanner scanner;
 
     public UsersActions() {
-        this.usersManager = new UsersManager();
+        this.usersManager = new ListUsersManager();
         this.scanner = new Scanner(System.in);
 
     }
@@ -27,7 +28,7 @@ public class UsersActions {
         }
 
         final User newUser = new User();
-        newUser.setId(usersManager.generateId());
+        newUser.setId(0);
         newUser.setFirstName(userData[0]);
         newUser.setLastName(userData[1]);
         newUser.setAge(Integer.parseInt(userData[2]));
@@ -40,7 +41,6 @@ public class UsersActions {
         int idToDelete = scanner.nextInt();
         usersManager.delete(idToDelete);
         scanner.nextLine();
-
     }
 
     public void showAll() {
@@ -64,7 +64,6 @@ public class UsersActions {
 //            userData.append("Wiek: ").append(user.getAge()).append(", ");
 //            userData.append("Numer telefonu: ").append(user.getPhoneNumber()).append("; ");
 //            System.out.println(userData.toString());
-
         }
     }
 
@@ -102,8 +101,8 @@ public class UsersActions {
 
     public void searchById() {
         System.out.println("Podaj ID użytkownika");
-        int pattern = scanner.nextInt();
+        int userId = scanner.nextInt();
         scanner.nextLine();
-        printUserData(usersManager.searchId(pattern));
+        printUserData(Arrays.asList(usersManager.searchId(userId)));
     }
 }

@@ -1,7 +1,6 @@
 package com.boizband;
 
 import com.boizband.users.UsersActions;
-import com.boizband.users.UsersManager;
 
 import java.util.Scanner;
 
