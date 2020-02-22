@@ -4,6 +4,7 @@ import com.boizband.users.errors.UserNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ListUsersManager implements UsersManager {
     private List<User> users;
@@ -23,23 +24,25 @@ public class ListUsersManager implements UsersManager {
         //uncomment for tests
     }
 
-    private int generateId() {
-        return ++lastId;
+    private String generateId() {
+        return UUID.randomUUID().toString();
     }
 
+    @Override
     public void add(User user) {
         {
-            if (user.getId() == 0) {
+            if (user.getId() == null || user.getId().isEmpty()) {
                 user.setId(generateId());
             }
         }
         this.users.add(user);
     }
 
-    public void delete(int userId) {
+    @Override
+    public void delete(String userId) {
         User userForDelete = null;
         for (User user : this.users) {
-            if (user.getId() == userId) {
+            if (user.getId().equals(userId)) {
                 userForDelete = user;
                 break;
             }
@@ -47,12 +50,13 @@ public class ListUsersManager implements UsersManager {
         this.users.remove(userForDelete);
     }
 
+    @Override
     public void update(User userForUpdate) {
         if (this.users.size() == 0) {
             throw new UserNotFoundException("User not found.");
         }
         for (User user : this.users) {
-            if (userForUpdate.getId() == user.getId()) {
+            if (userForUpdate.getId().equals(user.getId())) {
                 user.setFirstName(userForUpdate.getFirstName());
                 user.setLastName(userForUpdate.getLastName());
                 user.setAge(userForUpdate.getAge());
@@ -62,6 +66,7 @@ public class ListUsersManager implements UsersManager {
         }
     }
 
+    @Override
     public List<User> search(final String pattern) {
         String patternUpper = pattern.toUpperCase();
         if (pattern.isEmpty()) {
@@ -82,9 +87,10 @@ public class ListUsersManager implements UsersManager {
         return searchResult;
     }
 
-    public User searchId(final int userId) {
+    @Override
+    public User searchById(final String userId) {
         for (final User user : this.users) {
-            if (user.getId() == userId) {
+            if (user.getId().equals(userId)) {
                 return user;
             }
         }

@@ -6,11 +6,11 @@ public interface UsersManager {
 
     void add(User user);
 
-    void delete(int userId);
+    void delete(String userId);
 
     void update(User userForUpdate);
 
     List<User> search(final String pattern);
 
-    User searchId(final int userId);
+    User searchById(final String userId);
 }

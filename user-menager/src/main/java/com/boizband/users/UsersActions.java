@@ -1,8 +1,6 @@
 package com.boizband.users;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UsersActions {
     private UsersManager usersManager;
@@ -23,7 +21,7 @@ public class UsersActions {
         }
 
         final User newUser = new User();
-        newUser.setId(0);
+        newUser.setId(UUID.randomUUID().toString());
         newUser.setFirstName(userData[0]);
         newUser.setLastName(userData[1]);
         newUser.setAge(Integer.parseInt(userData[2]));
@@ -33,9 +31,8 @@ public class UsersActions {
 
     public void deleteUser() {
         System.out.println("podaj ID użytkownika do usunięcia");
-        int idToDelete = scanner.nextInt();
+        String idToDelete = scanner.nextLine();
         usersManager.delete(idToDelete);
-        scanner.nextLine();
     }
 
     public void showAll() {
@@ -74,8 +71,7 @@ public class UsersActions {
 
     public void updateUser() {
         System.out.println("Podaj ID użytkownika, którego chcesz uaktualnic");
-        int idToUpdate = scanner.nextInt();
-        scanner.nextLine();
+        String idToUpdate = scanner.nextLine();
         System.out.println("Podaj dane użytkownika w formacie:\nIMIĘ;NAZWISKO;WIEK;NUMER TELEFONU");
         final String userStr = scanner.nextLine();
         final String[] userData = userStr.split(";");
@@ -96,8 +92,9 @@ public class UsersActions {
 
     public void searchById() {
         System.out.println("Podaj ID użytkownika");
-        int userId = scanner.nextInt();
-        scanner.nextLine();
-        printUserData(Arrays.asList(usersManager.searchId(userId)));
+
+        String userId = scanner.nextLine();
+
+        printUserData(Collections.singletonList(usersManager.searchById(userId)));
     }
 }

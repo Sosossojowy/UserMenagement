@@ -23,7 +23,7 @@ public class ListUsersManagerTest {
         //given
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(0);
         //when
-        listUsersManager.add(new User(1, 18, "firstname", "lastname", "phone number"));
+        listUsersManager.add(new User("1", 18, "firstname", "lastname", "phone number"));
         //then
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(1);
 
@@ -31,10 +31,10 @@ public class ListUsersManagerTest {
 
     @Test
     public void shouldDeleteUser() {
-        listUsersManager.add(new User(1, 18, "firstname", "lastname", "phone number"));
+        listUsersManager.add(new User("1", 18, "firstname", "lastname", "phone number"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(1);
         //when
-        listUsersManager.delete(1);
+        listUsersManager.delete("1");
         //then
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(0);
     }
@@ -43,7 +43,7 @@ public class ListUsersManagerTest {
     @Test
     public void shouldUpdateUserFirstName() {
         //given
-        User user = new User(1, 18, "firstname", "lastname", "phonenumber");
+        User user = new User("1", 18, "firstname", "lastname", "phonenumber");
         listUsersManager.add(user);
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(1);
         //when
@@ -58,8 +58,8 @@ public class ListUsersManagerTest {
     @Test
     public void shouldSearchByFirstName() {
         //given
-        listUsersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
-        listUsersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
+        listUsersManager.add(new User("1", 25, "Karol", "Strasburger", "799887665"));
+        listUsersManager.add(new User("2", 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(2);
         //when
         List<User> result = listUsersManager.search("Karol");
@@ -73,8 +73,8 @@ public class ListUsersManagerTest {
     @Test
     public void shouldSearchByPartOfFirstName() {
         //given
-        listUsersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
-        listUsersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
+        listUsersManager.add(new User("1", 25, "Karol", "Strasburger", "799887665"));
+        listUsersManager.add(new User("2", 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(2);
         //when
         List<User> result = listUsersManager.search("aro");
@@ -88,8 +88,8 @@ public class ListUsersManagerTest {
     @Test
     public void shouldSearchByLastName() {
         //given
-        listUsersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
-        listUsersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
+        listUsersManager.add(new User("1", 25, "Karol", "Strasburger", "799887665"));
+        listUsersManager.add(new User("2", 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(2);
         //when
         List<User> result = listUsersManager.search("Strasburger");
@@ -102,8 +102,8 @@ public class ListUsersManagerTest {
 
     @Test
     public void shouldSearchByPartOfLastName() {
-        listUsersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
-        listUsersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
+        listUsersManager.add(new User("1", 25, "Karol", "Strasburger", "799887665"));
+        listUsersManager.add(new User("2", 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(2);
         //when
         List<User> result = listUsersManager.search("rasburg");
@@ -117,8 +117,8 @@ public class ListUsersManagerTest {
     @Test
     public void shouldSearchByPhoneNumber() {
         //given
-        listUsersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
-        listUsersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
+        listUsersManager.add(new User("1", 25, "Karol", "Strasburger", "799887665"));
+        listUsersManager.add(new User("2", 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(2);
         //when
         List<User> result = listUsersManager.search("799887665");
@@ -132,8 +132,8 @@ public class ListUsersManagerTest {
     @Test
     public void shouldSearchByPartOfPhoneNumber() {
         //given
-        listUsersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
-        listUsersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
+        listUsersManager.add(new User("1", 25, "Karol", "Strasburger", "799887665"));
+        listUsersManager.add(new User("2", 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(2);
         //when
         List<User> result = listUsersManager.search("98876");
@@ -147,8 +147,8 @@ public class ListUsersManagerTest {
     @Test
     public void shouldSearchByAge() {
         //given
-        listUsersManager.add(new User(1, 25, "Karol", "Strasburger", "799887665"));
-        listUsersManager.add(new User(2, 35, "Paulina", "Kuc", "666888999"));
+        listUsersManager.add(new User("1", 25, "Karol", "Strasburger", "799887665"));
+        listUsersManager.add(new User("2", 35, "Paulina", "Kuc", "666888999"));
         Assertions.assertThat(listUsersManager.search("").size()).isEqualTo(2);
         //when
         List<User> result = listUsersManager.search("25");
