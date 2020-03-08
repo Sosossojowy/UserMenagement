@@ -5,12 +5,10 @@ import com.boizband.users.errors.UserNotFoundException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
 public class FileUsersManager implements UsersManager {
-    private static int lastId = 0;
 
     private List<User> users;
 
@@ -20,7 +18,7 @@ public class FileUsersManager implements UsersManager {
 
     private List<User> readFromFile() {
 
-        final List<User> result = new ArrayList<User>();
+        final List<User> result = new ArrayList<>();
         try (InputStream file = FileUsersManager.class.getResourceAsStream("/users.txt");
              BufferedReader reader = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
 
@@ -63,12 +61,13 @@ public class FileUsersManager implements UsersManager {
 
 
     @Override
-    public void add(User user) {
+    public User add(User user) {
         if (user.getId() == null || user.getId().isEmpty()) {
             user.setId(generateId());
         }
         this.users.add(user);
         saveFile();
+        return user;
     }
 
     @Override
@@ -87,7 +86,7 @@ public class FileUsersManager implements UsersManager {
     }
 
     @Override
-    public void update(User userForUpdate) {
+    public User update(User userForUpdate) {
         if (this.users.size() == 0) {
             throw new UserNotFoundException("User not found.");
         }
@@ -98,7 +97,7 @@ public class FileUsersManager implements UsersManager {
                 user.setAge(userForUpdate.getAge());
                 user.setPhoneNumber(userForUpdate.getPhoneNumber());
                 saveFile();
-                return;
+                return user;
             }
         }
         throw new UserNotFoundException("User not found.");
@@ -112,7 +111,7 @@ public class FileUsersManager implements UsersManager {
         if (pattern.isEmpty()) {
             return this.users;
         }
-        final List<User> searchResult = new ArrayList<User>();
+        final List<User> searchResult = new ArrayList<>();
         for (final User user : this.users) {
             if (user.getFirstName().toUpperCase().contains(patternUpper)) {
                 searchResult.add(user);

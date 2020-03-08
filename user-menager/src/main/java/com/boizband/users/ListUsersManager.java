@@ -29,13 +29,14 @@ public class ListUsersManager implements UsersManager {
     }
 
     @Override
-    public void add(User user) {
+    public User add(User user) {
         {
             if (user.getId() == null || user.getId().isEmpty()) {
                 user.setId(generateId());
             }
         }
         this.users.add(user);
+        return user;
     }
 
     @Override
@@ -48,10 +49,11 @@ public class ListUsersManager implements UsersManager {
             }
         }
         this.users.remove(userForDelete);
+
     }
 
     @Override
-    public void update(User userForUpdate) {
+    public User update(User userForUpdate) {
         if (this.users.size() == 0) {
             throw new UserNotFoundException("User not found.");
         }
@@ -61,9 +63,10 @@ public class ListUsersManager implements UsersManager {
                 user.setLastName(userForUpdate.getLastName());
                 user.setAge(userForUpdate.getAge());
                 user.setPhoneNumber(userForUpdate.getPhoneNumber());
-                return;
+                return user;
             }
         }
+        return userForUpdate;
     }
 
     @Override

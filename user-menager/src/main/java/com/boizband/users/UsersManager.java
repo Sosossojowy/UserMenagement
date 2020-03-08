@@ -1,14 +1,16 @@
 package com.boizband.users;
 
+import com.boizband.users.errors.UserNotFoundException;
+
 import java.util.List;
 
 public interface UsersManager {
 
-    void add(User user);
+    User add(User user);
 
     void delete(String userId);
 
-    void update(User userForUpdate);
+    User update(User userForUpdate) throws UserNotFoundException;
 
     List<User> search(final String pattern);
 
