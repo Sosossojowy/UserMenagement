@@ -1,5 +1,6 @@
 package com.boizband.users;
 
+import com.boizband.users.service.ListUsersManager;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;

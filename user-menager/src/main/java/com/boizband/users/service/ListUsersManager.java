@@ -1,5 +1,7 @@
-package com.boizband.users;
+package com.boizband.users.service;
 
+import com.boizband.users.User;
+import com.boizband.users.UsersManager;
 import com.boizband.users.errors.UserNotFoundException;
 
 import java.util.ArrayList;

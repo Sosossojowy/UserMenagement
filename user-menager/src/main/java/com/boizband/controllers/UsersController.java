@@ -1,21 +1,18 @@
 package com.boizband.controllers;
 
 import com.boizband.api.UsersApi;
-import com.boizband.users.FileUsersManager;
+import com.boizband.users.service.FileUsersManager;
 import com.boizband.users.User;
 import com.boizband.users.UsersManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UsersController implements UsersApi {
-
+    @Autowired
     private UsersManager usersManager;
-
-    public UsersController() {
-        this.usersManager = new FileUsersManager();
-    }
 
     @Override
     public ResponseEntity getAllUsers() {
